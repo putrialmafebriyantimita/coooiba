@@ -1,32 +1,23 @@
-from django.urls import path
-from . import views
+"""
+URL configuration for ujian_platform project.
+
+The `urlpatterns` list routes URLs to views. For more information please see:
+    https://docs.djangoproject.com/en/5.2/topics/http/urls/
+Examples:
+Function views
+    1. Add an import:  from my_app import views
+    2. Add a URL to urlpatterns:  path('', views.home, name='home')
+Class-based views
+    1. Add an import:  from other_app.views import Home
+    2. Add a URL to urlpatterns:  path('', Home.as_view(), name='home')
+Including another URLconf
+    1. Import the include() function: from django.urls import include, path
+    2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
+"""
+from django.contrib import admin
+from django.urls import path, include
 
 urlpatterns = [
-    # TEST
-    path('test-notif/', views.test_notif, name='test_notif'),
-
-    # FRONTEND
-    path('', views.login_view, name='login_view'),
-    path('menu/', views.menu_view, name='menu_view'),
-    path('exam/', views.exam_view, name='exam_view'),
-    path('manage-peserta/', views.manage_peserta_view, name='manage_peserta'),
-    
-    # ✅ HALAMAN LOCK SYSTEM (BARU)
-    path('exam/consent/', views.exam_consent_view, name='exam_consent'),
-    path('exam/lock/', views.exam_lock_view, name='exam_lock'),
-    path('admin/monitor/', views.admin_monitor_view, name='admin_monitor'),
-    
-    # API UJIAN
-    path('api/login/', views.login_peserta, name='login'),
-    path('api/validate-kode/', views.validate_kode_akses, name='validate_kode'),
-    path('api/submit-jawaban/', views.submit_jawaban, name='submit_jawaban'),
-    path('api/report-pelanggaran/', views.report_pelanggaran, name='report_pelanggaran'),
-    
-    # ✅ TELEGRAM ALERT ENDPOINTS
-    path('api/telegram-alert/', views.telegram_alert, name='telegram_alert'),
-    path('api/violation-alert/', views.violation_alert, name='violation_alert'),
-    
-    # API MANAGE PESERTA
-    path('api/tambah-peserta/', views.tambah_peserta_simple, name='tambah_peserta'),
-    path('api/list-peserta/', views.list_peserta, name='list_peserta'), 
+    path('admin/', admin.site.urls),
+    path('', include('ujian_core.urls')),  # SEMUA ROUTING DIHANDLE OLEH ujian_core
 ]
