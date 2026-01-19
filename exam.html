@@ -1,0 +1,106 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ujian Online</title>
+     <link rel="stylesheet" href="{% static 'ujian_core/css/exam.css' %}">
+    </head>
+
+<body>
+    <!-- Header Info -->
+    <div class="exam-header">
+        <div class="header-logo">
+            <img src="{% static 'ujian_core/images/LOGO SMK MITRA.jpg' %}" alt="Foto Siswa" class="student-photo" id="studentPhoto">
+            <div class="student-info" id="studentName">Nama Siswa</div>
+        </div>
+        <div class="exam-info" id="examName">Mapel Ujian</div>
+        <div class="timer" id="timer">120:00</div>
+        <div class="warning-count">
+            <div class="warning-dot"></div>
+            <span id="warningText">0/3</span>
+        </div>
+    </div>
+
+    <div class="exam-content">
+        <div class="content-overlay" id="startOverlay">
+            <div class="timer-display">
+                120:00
+                <div class="timer-label">WAKTU UJIAN</div>
+            </div>
+            <h1 class="exam-title">Ujian Siap Dimulai</h1>
+            <p class="exam-subtitle">
+                Klik tombol di bawah untuk memulai ujian. Timer akan berjalan secara
+                otomatis setelah ujian dimulai.
+            </p>
+
+            <div class="rules-list">
+                <h3>Aturan Ujian:</h3>
+                <ul>
+                    <li>
+                        <div class="clock-icon"></div>
+                        <span>Jangan meninggalkan halaman ujian selama ujian berlangsung</span>
+                    </li>
+                    <li>
+                        <div class="clock-icon"></div>
+                        <span>Dilarang menyontek</span>
+                    </li>
+                    <li>
+                        <div class="clock-icon"></div>
+                        <span>Tidak diperbolehkan membuka aplikasi atau tab browser lain</span>
+                    </li>
+                    <li>
+                        <div class="clock-icon"></div>
+                        <span>Dilarang menggunakan alat bantu apapun</span>
+                    </li>
+                    <li>
+                        <div class="clock-icon"></div>
+                        <span>Patuhi semua aturan dan tata tertib yang berlaku</span>
+                    </li>
+                </ul>
+            </div>
+
+            <p>
+                Durasi ujian:
+                <strong><span id="overlayTimer">120:00</span> menit</strong>
+            </p>
+            <div class="timer-status" id="timerStatus">Timer belum dimulai</div>
+            <button class="start-button" id="startButton">
+                Mulai Ujian Sekarang
+            </button>
+        </div>
+
+        <!-- Exam IFrame -->
+        <iframe id="examFrame" src="" style="width: 100%; height: 100%; border: none; display: none"></iframe>
+    </div>
+
+    <!-- Violation Modal -->
+    <div id="violationModal" class="modal">
+        <div class="modal-content">
+            <div class="modal-icon">🚨</div>
+            <h3>PELANGGARAN TERDETEKSI!</h3>
+            <p id="violationMessage">Anda telah meninggalkan halaman ujian</p>
+            <div class="warning-sound">🔊 Suara peringatan aktif</div>
+            <button onclick="closeModal()" class="btn-acknowledge">
+                Saya Mengerti
+            </button>
+        </div>
+    </div>
+     <button id="safeSubmitBtn" class="safe-submit-btn hidden">
+        <span class="submit-icon">✅</span>
+        <span class="submit-text">SAYA SUDAH SELESAI & KIRIM JAWABAN</span>
+    </button>
+    <!-- Audio Elements -->
+    <audio id="warningSound" preload="auto">
+        <source src="{% static 'ujian_core/sounds/beep.mp3' %}" type="audio/mpeg">
+    </audio>
+    
+    <audio id="cuteSound" preload="auto">
+        <source src="{% static 'ujian_core/sounds/cute.mp3' %}" type="audio/mpeg">
+    </audio>
+
+    <!-- External Scripts -->
+    <script src="{% static 'ujian_core/js/exam.js' %}"></script>
+</body>
+</html>

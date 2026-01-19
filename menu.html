@@ -1,0 +1,53 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="id">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Menu Ujian</title>
+    <link rel="stylesheet" href="{% static 'ujian_core/css/menu.css' %}">
+    <body style="background-image: url('/static/ujian_core/images/HAL1.jpg'); background-size: cover; background-position: center; background-attachment: fixed; min-height: 100vh; margin: 0;"></body>
+  </head>
+  <body>
+    <div class="menu-container">
+      <h1>Menu Utama</h1>
+      <div class="subtitle" id="userInfo">
+        <!-- Diisi JavaScript -->
+      </div>
+
+      <div class="menu-options">
+        <button class="glossy-btn" id="btnUrlInput">
+          🔗 Masukkan URL
+        </button>
+      </div>
+
+      <div id="urlInputContainer" class="url-input-container">
+        <div class="url-input-content">
+          <div class="input-group">
+            <input
+              type="text"
+              id="urlInput"
+              placeholder="Masukkan link ujian (contoh: https://example.com/ujian)"
+            />
+          </div>
+          <div class="input-group">
+            <button class="start-exam-btn" id="btnStartExam">
+              Mulai Ujian
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <div id="errorMessage" class="error-message"></div>
+      <div class="loading" id="loading">
+        <div class="loader-container">
+          <div class="loader"></div>
+          Memproses...
+        </div>
+      </div>
+    </div>
+
+    <!-- Load JavaScript file -->
+    <script src="{% static 'ujian_core/js/menu.js' %}"></script>
+  </body>
+</html>

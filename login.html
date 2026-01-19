@@ -1,0 +1,109 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="id">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Login Ujian Online</title>
+    <link rel="stylesheet" href="{% static 'ujian_core/css/login.css' %}">
+  </head>
+  <body>
+    <div class="login-container">
+      <div class="profile-photo">
+      <img src="{% static 'ujian_core/images/LOGO SMK MITRA.jpg' %}" alt="Logo SMK Mitra" />
+      </div>
+       <body style="background-image: url('/static/ujian_core/images/HAL1.jpg'); background-size: cover; background-position: center; background-attachment: fixed; min-height: 100vh; margin: 0;"></body>
+      <h1>Login Ujian Online</h1>
+
+      <button class="btn-main" id="btnShowForm">MASUK UJIAN</button>
+
+      <div class="form-container" id="formContainer">
+        <form id="loginForm">
+          <div class="form-group">
+            <label for="nama">Nama Peserta</label>
+            <div class="input-with-icon name-input">
+              <div class="icon"></div>
+              <input
+                type="text"
+                id="nama"
+                name="nama"
+                required
+                placeholder="Masukkan nama lengkap"
+              />
+            </div>
+            <div class="form-info">Pastikan nama sesuai</div>
+          </div>
+
+          <div class="form-group">
+            <label for="token_ujian">Token Ujian</label>
+            <div class="input-with-icon token-input">
+              <div class="icon"></div>
+              <input
+                type="password"
+                id= "token_ujian"
+                name="token_ujian"
+                required
+                placeholder="Masukkan token ujian"
+              />
+            </div>
+            <div class="form-info">Token bersifat rahasia</div>
+          </div>
+
+          <div class="form-group">
+            <label for="kelas">KELAS</label>
+            <div class="input-with-icon class-input">
+              <div class="icon"></div>
+              <input
+                type="text"
+                id="kelas"
+                name="kelas"
+                required
+                placeholder="Masukkan nama kelas"
+              />
+            </div>
+            <div class="form-info">Contoh: X Mekatronika 1</div>
+          </div>
+
+          <button type="submit" class="btn-login">
+            KLIK UNTUK MASUK UJIAN
+          </button>
+
+          <div class="loading" id="loading">
+            🔄 Memverifikasi data<span class="loading-dots"></span>
+          </div>
+        </form>
+
+        <div class="error-message" id="errorMessage"></div>
+        <div class="success-message" id="successMessage"></div>
+      </div>
+    </div>
+
+    <script>
+      document
+        .getElementById("btnShowForm")
+        .addEventListener("click", function () {
+          const formContainer = document.getElementById("formContainer");
+          const btnShowForm = document.getElementById("btnShowForm");
+
+          formContainer.classList.add("show");
+
+          setTimeout(() => {
+            btnShowForm.classList.add("hidden");
+          }, 300);
+        });
+
+      document
+        .getElementById("loginForm")
+        .addEventListener("submit", function (e) {
+          e.preventDefault();
+          const loading = document.getElementById("loading");
+          loading.style.display = "block";
+
+          setTimeout(() => {
+            loading.style.display = "none";
+          }, 2000);
+        });
+    </script>
+    <script src="{% static 'ujian_core/js/login.js' %}"></script>
+  </body>
+</html>
